@@ -1,0 +1,104 @@
+<!doctype HTML>
+<html lang="ar">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="pic/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>login</title>
+</head>
+
+
+<body>
+    <main class="login-main">
+        <div class="container">
+            <h3 class="title">
+                Welcome to Admin Panel
+                <div>BisConnect</div>
+            </h3>
+            <div class="form-wr">
+                <div class="text-center">
+                    <img src="pic/logo.svg" alt="">
+                    <div>Sign In</div>
+                </div>
+                <form action="" id="loginForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="userName" placeholder="Email">
+                    </div>
+                    <div class="form-group icon-inp">
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                        <button type="button" class="show-pass btn"><i class="fas fa-eye-slash"></i></button>
+                    </div>
+                    <div class="err-wr">
+                        <span class="erorr hide">Incorrect Username or password, please try again.</span>
+                    </div>
+                    <button type="submit" id="submitBtn" class="btn btn-block" disabled>SIGN IN</button>
+                </form>
+                <span class="line"></span>
+            </div>
+        </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src=" js/jquery-3.4.1.min.js"> </script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/feather.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+            if (feather) {
+                feather.replace({
+                    height: 16
+                });
+            }
+        })
+    </script>
+    <script>
+        const emailInput = document.getElementById('userName');
+        const passwordInput = document.getElementById('password');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorSpan = document.querySelector('.erorr');
+        const loginForm = document.getElementById('loginForm');
+
+        function validateInputs() {
+            if (emailInput.value.length > 2 && passwordInput.value.length > 2) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        emailInput.addEventListener('input', validateInputs);
+        passwordInput.addEventListener('input', validateInputs);
+
+        document.querySelector('.show-pass').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        });
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            errorSpan.classList.remove('hide');
+        });
+    </script>
+</body>
+
+</html>
